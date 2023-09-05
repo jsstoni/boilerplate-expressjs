@@ -1,6 +1,7 @@
 const cors = require("cors");
 const helmet = require("helmet");
 const express = require("express");
+const routes = require("./src/routes");
 const {
   logErrors,
   wrapErrors,
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(helmet());
+app.use(routes);
 
 //middlewares
 app.use(logErrors);
