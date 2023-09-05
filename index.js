@@ -1,7 +1,8 @@
 const cors = require("cors");
 const helmet = require("helmet");
 const express = require("express");
-const port = 9000;
+const config = require("./config");
+const port = config.port;
 const app = express();
 
 app.use(cors());
