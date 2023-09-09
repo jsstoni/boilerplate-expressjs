@@ -1,27 +1,19 @@
-const cors = require("cors");
-const helmet = require("helmet");
-const express = require("express");
-const compression = require("compression");
-const routes = require("./src/routes");
-const {
-  logErrors,
-  wrapErrors,
-  errorHandle,
-} = require("./src/utils/middlewares/errorMiddleware");
+const app = require("./app.js");
 const config = require("./config");
+const sequelize = require("./src/libs/dataBase.js");
+const Project = require("./src/models/Project.js");
+
 const port = config.port;
-const app = express();
 
-app.use(cors());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(helmet());
-app.use(compression());
-app.use(routes);
+async function main() {
+  try {
+    await sequelize.authenticate();
+    console.log("Start DB");
+    await sequelize.sync();
+    app.listen(port, () => console.log(`Server started on port ${port}`));
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-//middlewares
-app.use(logErrors);
-app.use(wrapErrors);
-app.use(errorHandle);
-
-app.listen(port, () => console.log(`Server started on port ${port}`));
+main();
