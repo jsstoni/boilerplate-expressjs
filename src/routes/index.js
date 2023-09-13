@@ -1,22 +1,23 @@
-import fs from "fs";
 import express from "express";
 import web from "./web.js";
+import { glob } from "glob";
 
 const router = express.Router();
-router.use(web); //global path
+router.use(web);
 
-const pathRouter = __dirname;
-
-const removeExtension = (fileName) => {
-  return fileName.split(".").shift();
-};
-
-fs.readdirSync(pathRouter).filter((file) => {
-  const fileWithOutExt = removeExtension(file);
-  const skip = ["index", "web"].includes(fileWithOutExt);
-  if (!skip) {
-    router.use(`/${fileWithOutExt}`, require(`./${fileWithOutExt}`));
-  }
+const routes = await glob("./src/routes/*.js", {
+  ignore: ["**/index.js", "**/web.js"],
 });
+
+for (const file of routes) {
+  const routeName = file.replace(/^.*[\\\/]/, "");
+  import(`./${routeName}`)
+    .then((routeModule) => {
+      router.use(`/${routeName.replace(".js", "")}`, routeModule.default);
+    })
+    .catch((err) => {
+      throw `Error load module: ${routeName}`;
+    });
+}
 
 export default router;
