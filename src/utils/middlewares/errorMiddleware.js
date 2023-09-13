@@ -1,4 +1,4 @@
-const config = require("../../../config");
+import config from "../../../config/index.js";
 
 const withErrorStack = (error, stack) => {
   if (config.dev) {
@@ -30,8 +30,4 @@ const errorHandle = (err, req, res, next) => {
   res.status(output.statusCode).json(withErrorStack(output.payload, stack));
 };
 
-module.exports = {
-  logErrors,
-  wrapErrors,
-  errorHandle,
-};
+export { logErrors, wrapErrors, errorHandle };

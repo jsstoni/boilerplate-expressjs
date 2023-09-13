@@ -1,7 +1,6 @@
-const app = require("./app.js");
-const config = require("./config");
-const sequelize = require("./src/libs/dataBase.js");
-const Project = require("./src/models/Project.js");
+import app from "./app.js";
+import config from "./config/index.js";
+import sequelize from "./src/libs/dataBase.js";
 
 const port = config.port;
 

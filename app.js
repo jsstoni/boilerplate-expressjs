@@ -1,13 +1,14 @@
-const cors = require("cors");
-const helmet = require("helmet");
-const express = require("express");
-const compression = require("compression");
-const routes = require("./src/routes");
-const {
+import cors from "cors";
+import helmet from "helmet";
+import express from "express";
+import compression from "compression";
+import routes from "./src/routes/index.js";
+import {
   logErrors,
   wrapErrors,
   errorHandle,
-} = require("./src/utils/middlewares/errorMiddleware");
+} from "./src/utils/middlewares/errorMiddleware.js";
+
 const app = express();
 
 app.use(cors());
@@ -22,4 +23,4 @@ app.use(logErrors);
 app.use(wrapErrors);
 app.use(errorHandle);
 
-module.exports = app;
+export default app;

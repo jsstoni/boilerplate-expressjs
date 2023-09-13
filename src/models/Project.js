@@ -1,5 +1,5 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../libs/dataBase");
+import { DataTypes } from "sequelize";
+import sequelize from "../libs/dataBase";
 
 const project = sequelize.define("Project", {
   id: {
@@ -10,4 +10,4 @@ const project = sequelize.define("Project", {
   name: DataTypes.STRING,
 });
 
-module.exports = project;
+export default project;

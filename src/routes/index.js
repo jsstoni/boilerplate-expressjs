@@ -1,8 +1,8 @@
-const fs = require("fs");
-const express = require("express");
-const router = express.Router();
-const web = require("./web.js");
+import fs from "fs";
+import express from "express";
+import web from "./web.js";
 
+const router = express.Router();
 router.use(web); //global path
 
 const pathRouter = __dirname;
@@ -19,4 +19,4 @@ fs.readdirSync(pathRouter).filter((file) => {
   }
 });
 
-module.exports = router;
+export default router;
