@@ -1,3 +1,4 @@
+import path from "path";
 import cors from "cors";
 import helmet from "helmet";
 import express from "express";
@@ -17,7 +18,9 @@ app.use(express.json());
 app.use(helmet());
 app.use(compression());
 
+app.set("views", path.join('src/views'));
 app.set("view engine", "ejs");
+
 app.use(routes);
 
 //middlewares
