@@ -5,10 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch --env-file=.env index.js"
+    "dev": "node --watch --env-file=.env ./bin/www.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "jsstoni",
   "license": "ISC",
   "dependencies": {
     "compression": "^1.7.4",
