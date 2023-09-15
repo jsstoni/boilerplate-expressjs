@@ -1,5 +1,5 @@
 import http from "http";
-import app from "../app.js";
+import app from "../src/app.js";
 import config from "../config/index.js";
 import sequelize from "../src/libs/dataBase.js";
 
