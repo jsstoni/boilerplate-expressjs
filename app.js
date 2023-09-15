@@ -16,6 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(helmet());
 app.use(compression());
+
+app.set("view engine", "ejs");
 app.use(routes);
 
 //middlewares
