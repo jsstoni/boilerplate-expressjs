@@ -3,12 +3,12 @@ import cors from "cors";
 import helmet from "helmet";
 import express from "express";
 import compression from "compression";
-import routes from "./routes/index.js";
+import routes from "../utils/useRouter.js";
 import {
   logErrors,
   wrapErrors,
   errorHandle,
-} from "./utils/middlewares/errorMiddleware.js";
+} from "../utils/middlewares/errorMiddleware.js";
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(compression());
 
-app.set("views", path.join('src/views'));
+app.set("views", path.join("src/views"));
 app.set("view engine", "ejs");
 
 app.use(routes);

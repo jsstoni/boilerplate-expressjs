@@ -1,4 +1,4 @@
-import config from "../../../config/index.js";
+import config from "../../config/server.js";
 
 const withErrorStack = (error, stack) => {
   if (config.dev) {

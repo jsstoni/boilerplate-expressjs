@@ -1,6 +1,6 @@
 import http from "http";
 import app from "../src/app.js";
-import config from "../config/index.js";
+import config from "../config/server.js";
 
 function main() {
   try {
