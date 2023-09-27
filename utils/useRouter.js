@@ -5,13 +5,13 @@ import { glob } from "glob";
 const router = express.Router();
 router.use(web);
 
-const routes = await glob("../src/routes/*.js", {
+const routes = await glob("./src/routes/*.js", {
   ignore: ["**/index.js", "**/web.js"],
 });
 
 for (const file of routes) {
   const routeName = file.replace(/^.*[\\\/]/, "");
-  import(`./${routeName}`)
+  import(`../src/routes/${routeName}`)
     .then((routeModule) => {
       router.use(`/${routeName.replace(".js", "")}`, routeModule.default);
     })
